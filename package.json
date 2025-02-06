@@ -2,10 +2,10 @@
   "name": "json-visualizer",
   "displayName": "JSON Visualizer",
   "description": "Visualize JSON data as interactive diagrams",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "haknkayaa",
   "engines": {
-    "vscode": "^1.96.0"  
+    "vscode": "^1.96.0"
   },
   "categories": [
     "Visualization",
