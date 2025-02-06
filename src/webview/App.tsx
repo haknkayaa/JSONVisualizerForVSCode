@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import ReactFlow, {
   Background,
   useReactFlow,
@@ -17,12 +17,33 @@ import 'reactflow/dist/style.css';
 import { 
     FiZoomIn, 
     FiZoomOut, 
-    FiMaximize2 
+    FiMaximize2,
+    FiDownload
 } from 'react-icons/fi';
 
+import { toPng } from 'html-to-image';
+
 // Custom controls component
-const CustomControls: React.FC = () => {
+const CustomControls: React.FC<{ reactFlowWrapper: React.RefObject<HTMLDivElement> }> = ({ reactFlowWrapper }) => {
     const { zoomIn, zoomOut, fitView } = useReactFlow();
+
+    const downloadImage = () => {
+        if (reactFlowWrapper.current === null) {
+            return;
+        }
+
+        toPng(reactFlowWrapper.current, {
+            backgroundColor: '#1A1A1A',
+            quality: 1,
+            pixelRatio: 2
+        })
+        .then((dataUrl) => {
+            const link = document.createElement('a');
+            link.download = 'json-visualization.png';
+            link.href = dataUrl;
+            link.click();
+        });
+    };
 
     return (
         <div
@@ -60,6 +81,13 @@ const CustomControls: React.FC = () => {
             >
                 <FiMaximize2 size={18} />
             </button>
+            <button
+                className="control-button"
+                onClick={downloadImage}
+                title="Download as PNG"
+            >
+                <FiDownload size={18} />
+            </button>
         </div>
     );
 };
@@ -95,6 +123,7 @@ interface AppProps {
 }
 
 export const App: React.FC<AppProps> = ({ initialData }) => {
+  const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     
@@ -264,7 +293,7 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
   };
 
   return (
-    <div style={flowStyles}>
+    <div style={{ width: '100%', height: '100vh' }} ref={reactFlowWrapper}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -294,7 +323,7 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
           color="#4A4A4A"
           style={{ backgroundColor: '#1A1A1A' }}
         />
-        <CustomControls />
+        <CustomControls reactFlowWrapper={reactFlowWrapper}/>
       </ReactFlow>
     </div>
   );
