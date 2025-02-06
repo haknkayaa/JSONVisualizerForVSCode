@@ -3,9 +3,9 @@
   "displayName": "JSON Visualizer",
   "description": "Visualize JSON data as interactive diagrams",
   "version": "1.0.0",
-  "publisher": "Hakan Kaya",
+  "publisher": "haknkayaa",
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.96.0"  
   },
   "categories": [
     "Visualization",
