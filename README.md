@@ -1,71 +1,86 @@
-# jsonvisualizer README
+# JSON Visualizer for VS Code
 
-This is the README for your extension "jsonvisualizer". After writing up a brief description, we recommend including the following sections.
+A powerful Visual Studio Code extension that helps you visualize and navigate JSON files with ease.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- 🎨 **Interactive JSON Visualization**: Convert JSON data into an interactive tree view
+- 🔍 **Search and Filter**: Quickly find specific values or keys in large JSON files
+- 📊 **Collapsible Sections**: Expand/collapse nested objects and arrays
+- 🎯 **Path Copy**: Copy the path to any JSON node with a single click
+- 🌈 **Syntax Highlighting**: Custom theme for better JSON readability
+- 🔄 **Auto-formatting**: Automatically format JSON files on save
+- 📱 **Responsive Design**: Works well with different window sizes
 
-For example if there is an image subfolder under your extension project workspace:
+![JSON Visualizer Demo](images/demo.gif)
 
-\!\[feature X\]\(images/feature-x.png\)
+## Installation
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. Open VS Code
+2. Press `Ctrl+P` / `Cmd+P`
+3. Type `ext install jsonvisualizer`
+4. Press Enter
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Open any JSON file in VS Code
+2. Click the "Visualize JSON" button in the editor toolbar
+3. Or use the command palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for "JSON Visualizer"
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `jsonVisualizer.autoVisualize`: Enable/disable automatic visualization when opening JSON files
+* `jsonVisualizer.theme`: Choose between "light" and "dark" visualization themes
+* `jsonVisualizer.maxDepth`: Set maximum depth for nested object expansion
+* `jsonVisualizer.formatOnSave`: Enable/disable JSON formatting on save
+
+## Keyboard Shortcuts
+
+- `Alt+V`: Toggle JSON visualization
+- `Alt+F`: Format JSON document
+- `Alt+S`: Search in JSON
+- `Alt+C`: Copy JSON path
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Very large JSON files (>10MB) might cause performance issues
+- Some special Unicode characters may not display correctly
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
+- Initial release
+- Basic JSON visualization
+- Search functionality
+- Path copying
 
 ### 1.1.0
+- Added dark theme support
+- Improved performance for large files
+- Added auto-formatting feature
 
-Added features X, Y, and Z.
+### 1.2.0
+- Added keyboard shortcuts
+- Improved search functionality
+- Bug fixes and performance improvements
+
+## Contributing
+
+Found a bug or have a feature request? Please open an issue on our [GitHub repository](https://github.com/yourusername/jsonvisualizer).
+
+## License
+
+This extension is licensed under the [MIT License](LICENSE.md).
+
+## Support
+
+Need help? Feel free to:
+- Check our [documentation](https://github.com/yourusername/jsonvisualizer/wiki)
+- Open an issue on [GitHub](https://github.com/yourusername/jsonvisualizer/issues)
+- Send an email to support@jsonvisualizer.com
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy visualizing your JSON files!** 🎉
