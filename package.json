@@ -14,7 +14,7 @@
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/json-visualizer"
+    "url": "https://github.com/haknkayaa/JSONVisualizerForVSCode"
   },
   "activationEvents": [],
   "main": "./out/extension.js",
@@ -67,5 +67,17 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.4.0",
     "reactflow": "^11.7.0"
-  }
+  },
+  "galleryBanner": {
+    "color": "#1A1A1A",
+    "theme": "dark"
+  },
+  "markdown": "github",
+  "badges": [],
+  "screenshots": [
+    {
+      "path": "images/image.png",
+      "label": "JSON Visualizer Demo"
+    }
+  ]
 }
