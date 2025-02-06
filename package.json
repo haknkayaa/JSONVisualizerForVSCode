@@ -1,14 +1,21 @@
 {
-  "name": "jsonvisualizer",
+  "name": "json-visualizer",
   "displayName": "JSON Visualizer",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Visualize JSON data as interactive diagrams",
+  "version": "1.0.0",
+  "publisher": "Hakan Kaya",
   "engines": {
-    "vscode": "^1.96.0"
+    "vscode": "^1.60.0"
   },
   "categories": [
+    "Visualization",
     "Other"
   ],
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/json-visualizer"
+  },
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
