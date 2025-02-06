@@ -50,6 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
 						#root {
 							height: 100%;
 							width: 100%;
+                            font-family: Menlo, Monaco, Consolas, monospace;
 						}
 					</style>
 				</head>

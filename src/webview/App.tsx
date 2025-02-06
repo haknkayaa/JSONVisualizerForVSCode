@@ -57,6 +57,7 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
         borderRadius: '8px',
         padding: '12px',
         fontSize: '14px',
+        fontFamily: "'Menlo', 'Consolas', 'Monaco', monospace",
         minWidth: '200px',
         position: 'relative',
         cursor: 'move',
@@ -64,12 +65,16 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
         transition: 'box-shadow 0.2s, transform 0.1s'
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+        e.currentTarget.style.boxShadow = '0 4px 15px rgba(100, 181, 246, 0.4)'; 
         e.currentTarget.style.transform = 'translateY(-2px)';
+        e.currentTarget.style.border = '1px solid #64B5F6'; 
+        e.currentTarget.style.background = '#333333'; 
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
         e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.border = '1px solid #3D3D3D';
+        e.currentTarget.style.background = '#2B2B2B';
       }}
     >
       <Handle
