@@ -245,7 +245,7 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
             source: currentId,
             target: childId,
             label: key,
-            type: 'smoothstep',
+            type: 'bezier',
             animated: true,
             style: { 
               stroke: '#fff', 
