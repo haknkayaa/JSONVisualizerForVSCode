@@ -52,6 +52,29 @@ export function activate(context: vscode.ExtensionContext) {
 							width: 100%;
                             font-family: Menlo, Monaco, Consolas, monospace;
 						}
+                        .control-button {
+                            background: transparent;
+                            border: 1px solid #3D3D3D;
+                            color: #fff;
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        }
+                        .control-button:hover {
+                            background: #3D3D3D;
+                            border-color: #4D4D4D;
+                        }
+                        .control-button:active {
+                            transform: translateY(1px);
+                        }
+                        .control-button svg {
+                            stroke-width: 2px;
+                        }
 					</style>
 				</head>
 				<body>

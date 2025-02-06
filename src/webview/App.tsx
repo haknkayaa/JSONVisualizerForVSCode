@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import ReactFlow, {
   Background,
+  useReactFlow,
   BackgroundVariant,
-  Controls,
   Node,
   Edge,
   ConnectionMode,
@@ -13,6 +13,56 @@ import ReactFlow, {
   Position
 } from 'reactflow';
 import 'reactflow/dist/style.css';
+
+import { 
+    FiZoomIn, 
+    FiZoomOut, 
+    FiMaximize2 
+} from 'react-icons/fi';
+
+// Custom controls component
+const CustomControls: React.FC = () => {
+    const { zoomIn, zoomOut, fitView } = useReactFlow();
+
+    return (
+        <div
+            style={{
+                position: 'absolute',
+                right: '20px',
+                top: '20px',
+                zIndex: 4,
+                display: 'flex',
+                gap: '8px',
+                padding: '6px',
+                borderRadius: '6px',
+                background: '#2B2B2B',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+            }}
+        >
+            <button
+                className="control-button"
+                onClick={() => zoomIn()}
+                title="Zoom In"
+            >
+                <FiZoomIn size={18} />
+            </button>
+            <button
+                className="control-button"
+                onClick={() => zoomOut()}
+                title="Zoom Out"
+            >
+                <FiZoomOut size={18} />
+            </button>
+            <button
+                className="control-button"
+                onClick={() => fitView({ padding: 0.2 })}
+                title="Fit View"
+            >
+                <FiMaximize2 size={18} />
+            </button>
+        </div>
+    );
+};
 
 const flowStyles = {
   background: '#1A1A1A',
@@ -47,7 +97,7 @@ interface AppProps {
 export const App: React.FC<AppProps> = ({ initialData }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-
+    
   const CustomNode = ({ data }: { data: NodeData }) => (
     <div
       style={{
@@ -244,17 +294,7 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
           color="#4A4A4A"
           style={{ backgroundColor: '#1A1A1A' }}
         />
-        <Controls 
-          style={{ 
-            background: '#2B2B2B', 
-            border: 'none',
-            borderRadius: '8px',
-            padding: '4px'
-          }} 
-          showZoom={true}
-          showFitView={true}
-          showInteractive={false}
-        />
+        <CustomControls />
       </ReactFlow>
     </div>
   );
