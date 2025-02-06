@@ -2,7 +2,7 @@
 
 A Visual Studio Code extension that provides interactive visualization for JSON data, allowing you to see your JSON structures as beautiful, interactive diagrams. Perfect for understanding complex JSON structures, API responses, and configuration files.
 
-![JSON Visualizer Demo](docs/image.png)
+![JSON Visualizer Demo](images/image.png)
 
 ## Features
 
