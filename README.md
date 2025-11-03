@@ -13,6 +13,7 @@ A Visual Studio Code extension that provides interactive visualization for JSON 
 - 🖱️ **Drag & Drop**: Rearrange nodes to customize your view
 - 🎮 **Keyboard Controls**: Full keyboard navigation support
 - 🌙 **Dark Theme**: Optimized for VS Code's dark theme
+- 🚨 **Helpful Validation**: Inline warnings and guidance when JSON can't be parsed
 
 ## Quick Start
 
@@ -41,6 +42,7 @@ Open the Command Palette (Command+Shift+P on macOS and Ctrl+Shift+P on Windows/L
    - Scroll to zoom
    - Click and drag background to pan
    - Use control buttons for quick actions
+   - Fix JSON syntax errors directly in the editor and the view will refresh automatically
 
 ![Basic Usage]
 

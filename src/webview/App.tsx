@@ -120,13 +120,14 @@ interface NodeData {
 
 interface AppProps {
   initialData?: any;
+  errorMessage?: string;
 }
 
-export const App: React.FC<AppProps> = ({ initialData }) => {
+export const App: React.FC<AppProps> = ({ initialData, errorMessage }) => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-    
+
   const CustomNode = ({ data }: { data: NodeData }) => (
     <div
       style={{
@@ -207,11 +208,20 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
     let nodeId = 0;
     const X_SPACING = 400;
     const Y_SPACING = 150;
+    const levelPositions = new Map<number, number>();
 
-    const processNode = (obj: any, parentId?: string, level = 0, verticalIndex = 0): string => {
+    const getNextPosition = (level: number) => {
+      const next = levelPositions.get(level) ?? 0;
+      levelPositions.set(level, next + 1);
+      return next;
+    };
+
+    const processNode = (obj: any, parentId?: string, level = 0): string => {
       const currentId = `node-${nodeId++}`;
       const content: { key: string; value: any }[] = [];
       const childrenToProcess: [string, any][] = [];
+
+      const verticalIndex = getNextPosition(level);
 
       if (typeof obj === 'object' && obj !== null) {
         Object.entries(obj).forEach(([key, value]) => {
@@ -225,21 +235,21 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
         nodes.push({
           id: currentId,
           type: 'custom',
-          data: { 
-            content, 
-            isObject: childrenToProcess.length > 0 
+          data: {
+            content,
+            isObject: childrenToProcess.length > 0
           },
-          position: { 
-            x: level * X_SPACING, 
-            y: verticalIndex * Y_SPACING 
+          position: {
+            x: level * X_SPACING,
+            y: verticalIndex * Y_SPACING
           },
           style: {
             opacity: content.length > 0 ? 1 : 0.7
           }
         });
 
-        childrenToProcess.forEach(([key, value], index) => {
-          const childId = processNode(value, currentId, level + 1, index);
+        childrenToProcess.forEach(([key, value]) => {
+          const childId = processNode(value, currentId, level + 1);
           edges.push({
             id: `edge-${currentId}-${childId}`,
             source: currentId,
@@ -277,20 +287,68 @@ export const App: React.FC<AppProps> = ({ initialData }) => {
   }, []);
 
   useEffect(() => {
-    const data = initialData || {
-      appName: "null",
-      author: "proident",
-      launched: -60643793.95864394,
-      openSource: false,
-      stars: 30228844.364910394
-    };
+    if (errorMessage) {
+      setNodes([]);
+      setEdges([]);
+      return;
+    }
+
+    const hasData =
+      initialData &&
+      (!(typeof initialData === 'object') || Object.keys(initialData).length > 0);
+
+    const data = hasData
+      ? initialData
+      : {
+          appName: 'JSON Visualizer',
+          author: 'haknkayaa',
+          openSource: true,
+          stars: '⭐️'
+        };
 
     processJSON(data);
-  }, [processJSON, initialData]);
+  }, [processJSON, initialData, errorMessage]);
 
   const nodeTypes = {
     custom: CustomNode
   };
+
+  if (errorMessage) {
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#1A1A1A',
+          color: '#fff'
+        }}
+      >
+        <div
+          style={{
+            maxWidth: '420px',
+            padding: '24px',
+            borderRadius: '12px',
+            background: '#2B2B2B',
+            border: '1px solid #3D3D3D',
+            boxShadow: '0 12px 40px rgba(0,0,0,0.35)',
+            textAlign: 'center',
+            lineHeight: 1.6
+          }}
+        >
+          <h2 style={{ marginTop: 0, marginBottom: '12px', color: '#F48FB1' }}>
+            Unable to render JSON
+          </h2>
+          <p style={{ margin: 0, color: '#CCCCCC' }}>{errorMessage}</p>
+          <p style={{ marginTop: '16px', fontSize: '13px', color: '#888' }}>
+            Please ensure the JSON is valid before trying again.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ width: '100%', height: '100vh' }} ref={reactFlowWrapper}>

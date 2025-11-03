@@ -18,19 +18,29 @@ if (!container) {
 
 const root = createRoot(container);
 
+const render = (data?: any, errorMessage?: string) => {
+  root.render(<App initialData={data} errorMessage={errorMessage} />);
+};
+
 // İlk render için boş bir obje gönderelim
-root.render(<App initialData={{}} />);
+render({});
 
 // VSCode webview mesajlarını dinle
 window.addEventListener('message', event => {
   const message = event.data;
+
+  if (message.type === 'error') {
+    render(undefined, message.message ?? 'Unable to parse JSON content.');
+    return;
+  }
+
   if (message.type === 'update') {
     try {
       const jsonData = JSON.parse(message.content);
-      root.render(<App initialData={jsonData} />);
+      render(jsonData);
     } catch (error) {
       console.error('JSON parse error:', error);
-      root.render(<App initialData={{error: 'Invalid JSON'}} />);
+      render(undefined, 'The JSON content could not be parsed.');
     }
   }
-}); 
+});

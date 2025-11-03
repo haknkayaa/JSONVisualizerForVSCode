@@ -6,15 +6,22 @@ import * as path from 'path';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	console.log('JSON Visualizer extension is now active!');
+        console.log('JSON Visualizer extension is now active!');
 
-	const disposable = vscode.commands.registerCommand('jsonvisualizer.openPreview', () => {
-		const activeEditor = vscode.window.activeTextEditor;
-		
-		if (!activeEditor || path.extname(activeEditor.document.fileName) !== '.json') {
-			vscode.window.showErrorMessage('Please open a JSON file first');
-			return;
-		}
+        const disposable = vscode.commands.registerCommand('jsonvisualizer.openPreview', () => {
+                const activeEditor = vscode.window.activeTextEditor;
+
+                if (!activeEditor) {
+                        vscode.window.showErrorMessage('Please open a JSON file first');
+                        return;
+                }
+
+                const extension = path.extname(activeEditor.document.fileName).toLowerCase();
+
+                if (extension !== '.json') {
+                        vscode.window.showErrorMessage('Please open a JSON file first');
+                        return;
+                }
 
 		const panel = vscode.window.createWebviewPanel(
 			'jsonVisualizer',
@@ -88,13 +95,23 @@ export function activate(context: vscode.ExtensionContext) {
 		`;
 
 		// JSON içeriğini gönder
-		const updateContent = () => {
-			const jsonContent = activeEditor.document.getText();
-			panel.webview.postMessage({
-				type: 'update',
-				content: jsonContent
-			});
-		};
+                const updateContent = () => {
+                        const jsonContent = activeEditor.document.getText();
+
+                        try {
+                                JSON.parse(jsonContent);
+                                panel.webview.postMessage({
+                                        type: 'update',
+                                        content: jsonContent
+                                });
+                        } catch (error) {
+                                vscode.window.showWarningMessage('JSON Visualizer: The document contains invalid JSON. Rendering has been paused until the syntax is fixed.');
+                                panel.webview.postMessage({
+                                        type: 'error',
+                                        message: 'The document contains invalid JSON. Please fix the errors and try again.'
+                                });
+                        }
+                };
 
 		updateContent();
 

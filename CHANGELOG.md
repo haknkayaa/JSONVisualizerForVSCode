@@ -36,6 +36,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Activation event for the preview command so the extension loads when the command is used
+- Inline invalid JSON warnings with graceful fallback messaging in the webview
+- Smarter node positioning to minimise overlap when rendering nested structures
+
 ### Planned
 - Light theme support
 - Custom theme options
