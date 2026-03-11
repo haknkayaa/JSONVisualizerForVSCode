@@ -1,0 +1,46 @@
+{
+  "company": {
+    "name": "Northwind Labs",
+    "departments": {
+      "engineering": {
+        "backend": {
+          "services": {
+            "billing": {
+              "owner": "team-billing",
+              "alerts": {
+                "pager": true,
+                "thresholds": {
+                  "cpu": 80,
+                  "memory": 75,
+                  "latencyMs": 400
+                }
+              }
+            },
+            "identity": {
+              "owner": "team-auth",
+              "alerts": {
+                "pager": false,
+                "thresholds": {
+                  "cpu": 65,
+                  "memory": 70,
+                  "latencyMs": 250
+                }
+              }
+            }
+          }
+        },
+        "frontend": {
+          "apps": {
+            "dashboard": {
+              "owner": "team-web",
+              "deploy": {
+                "channel": "stable",
+                "region": "global"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

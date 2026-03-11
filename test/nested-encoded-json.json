@@ -1,0 +1,9 @@
+{
+  "requestId": "req-1001",
+  "service": "checkout",
+  "payload": "{\"customer\":{\"id\":\"cus-42\",\"email\":\"dev@example.com\"},\"cart\":{\"currency\":\"USD\",\"items\":[{\"sku\":\"SKU-1\",\"qty\":2},{\"sku\":\"SKU-2\",\"qty\":1}]},\"flags\":{\"priority\":true}}",
+  "metadata": {
+    "source": "api-gateway",
+    "region": "eu-west-1"
+  }
+}

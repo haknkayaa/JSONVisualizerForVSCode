@@ -1,7 +1,7 @@
 {
   "name": "json-visualizer",
   "displayName": "JSON Visualizer",
-  "description": "Visualize JSON data as interactive diagrams",
+  "description": "Visualize JSON data as interactive diagrams with exports and parsed string expansion",
   "version": "1.0.1",
   "publisher": "haknkayaa",
   "engines": {
@@ -22,7 +22,11 @@
     "commands": [
       {
         "command": "jsonvisualizer.openPreview",
-        "title": "Open JSON Preview"
+        "title": "Preview JSON",
+        "icon": {
+          "light": "images/preview-light.svg",
+          "dark": "images/preview-dark.svg"
+        }
       }
     ],
     "menus": {
@@ -76,8 +80,16 @@
   "badges": [],
   "screenshots": [
     {
-      "path": "images/image.png",
-      "label": "JSON Visualizer Demo"
+      "path": "images/basic-object.png",
+      "label": "Basic object visualization"
+    },
+    {
+      "path": "images/deep-tree.png",
+      "label": "Deep nested object visualization"
+    },
+    {
+      "path": "images/graphql-request.png",
+      "label": "Parsed nested JSON string visualization"
     }
   ]
 }

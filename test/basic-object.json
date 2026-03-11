@@ -1,0 +1,15 @@
+{
+  "app": "JSON Visualizer",
+  "version": "1.0.1",
+  "enabled": true,
+  "stats": {
+    "stars": 128,
+    "installs": 5021,
+    "rating": 4.7
+  },
+  "tags": [
+    "visualization",
+    "json",
+    "vscode"
+  ]
+}

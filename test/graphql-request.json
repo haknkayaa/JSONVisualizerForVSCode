@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "POST",
+    "uri": "https://api.example.com/graphql",
+    "body": "{\"query\":\"query ProductDetails($id: String!) {\\n  product(id: $id) {\\n    id\\n    name\\n    variants {\\n      sku\\n      price\\n      stock\\n    }\\n  }\\n}\",\"variables\":{\"id\":\"sku-123\"}}"
+  },
+  "response": {
+    "status": 200,
+    "durationMs": 182
+  }
+}

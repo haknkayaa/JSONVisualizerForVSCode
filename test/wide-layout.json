@@ -1,0 +1,36 @@
+{
+  "root": {
+    "node01": {
+      "value": 1,
+      "active": true
+    },
+    "node02": {
+      "value": 2,
+      "active": false
+    },
+    "node03": {
+      "value": 3,
+      "active": true
+    },
+    "node04": {
+      "value": 4,
+      "active": false
+    },
+    "node05": {
+      "value": 5,
+      "active": true
+    },
+    "node06": {
+      "value": 6,
+      "active": false
+    },
+    "node07": {
+      "value": 7,
+      "active": true
+    },
+    "node08": {
+      "value": 8,
+      "active": false
+    }
+  }
+}

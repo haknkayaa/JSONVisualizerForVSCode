@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { startTransition, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import 'reactflow/dist/style.css';
 
 declare global {
   interface Window {
-    vscodeApi: any;
+    vscodeApi?: {
+      getState?: () => { jsonData?: unknown; rawContent?: string } | undefined;
+      setState?: (state: { jsonData: unknown; rawContent: string }) => void;
+      postMessage?: (message: { type: string }) => void;
+    };
   }
 }
 
-// VSCode API'yi doğrudan HTML'de tanımlayacağız, burada kullanmayacağız
 const container = document.getElementById('root');
 
 if (!container) {
@@ -18,19 +21,61 @@ if (!container) {
 
 const root = createRoot(container);
 
-// İlk render için boş bir obje gönderelim
-root.render(<App initialData={{}} />);
+const getFallbackData = () => ({});
+interface WebviewState {
+  jsonData: unknown;
+  rawContent: string;
+}
 
-// VSCode webview mesajlarını dinle
-window.addEventListener('message', event => {
-  const message = event.data;
-  if (message.type === 'update') {
-    try {
-      const jsonData = JSON.parse(message.content);
-      root.render(<App initialData={jsonData} />);
-    } catch (error) {
-      console.error('JSON parse error:', error);
-      root.render(<App initialData={{error: 'Invalid JSON'}} />);
-    }
-  }
-}); 
+const getInitialState = (): WebviewState => {
+  const persistedState = window.vscodeApi?.getState?.();
+  return {
+    jsonData: persistedState?.jsonData ?? getFallbackData(),
+    rawContent: persistedState?.rawContent ?? ''
+  };
+};
+
+const WebviewRoot: React.FC = () => {
+  const [state, setState] = useState<WebviewState>(getInitialState);
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      const message = event.data;
+      if (message?.type !== 'update') {
+        return;
+      }
+
+      const rawContent = typeof message.content === 'string' ? message.content : '';
+      let nextJsonData: unknown = getFallbackData();
+
+      try {
+        nextJsonData = JSON.parse(rawContent);
+      } catch (error) {
+        console.error('JSON parse error:', error);
+        nextJsonData = { error: 'Invalid JSON' };
+      }
+
+      const nextState: WebviewState = {
+        jsonData: nextJsonData,
+        rawContent
+      };
+
+      window.vscodeApi?.setState?.(nextState);
+
+      startTransition(() => {
+        setState(nextState);
+      });
+    };
+
+    window.addEventListener('message', handleMessage);
+    window.vscodeApi?.postMessage?.({ type: 'ready' });
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
+  return <App initialData={state.jsonData} dataSignature={state.rawContent} />;
+};
+
+root.render(<WebviewRoot />);

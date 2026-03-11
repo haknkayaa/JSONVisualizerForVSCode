@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ada",
+      "roles": [
+        "admin",
+        "editor"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Linus",
+      "roles": [
+        "viewer"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "login",
+      "meta": "{\"ip\":\"127.0.0.1\",\"device\":\"desktop\"}"
+    },
+    {
+      "type": "purchase",
+      "meta": "{\"total\":129.99,\"currency\":\"USD\",\"items\":[\"book\",\"pen\"]}"
+    }
+  ]
+}

@@ -87,13 +87,31 @@ export function activate(context: vscode.ExtensionContext) {
 			</html>
 		`;
 
-		// JSON içeriğini gönder
-		const updateContent = () => {
-			const jsonContent = activeEditor.document.getText();
+		let isWebviewReady = false;
+		let latestContent = activeEditor.document.getText();
+
+		const pushContent = () => {
+			if (!isWebviewReady) {
+				return;
+			}
+
 			panel.webview.postMessage({
 				type: 'update',
-				content: jsonContent
+				content: latestContent
 			});
+		};
+
+		const readySubscription = panel.webview.onDidReceiveMessage((message) => {
+			if (message?.type === 'ready') {
+				isWebviewReady = true;
+				pushContent();
+			}
+		});
+
+		// JSON içeriğini gönder
+		const updateContent = () => {
+			latestContent = activeEditor.document.getText();
+			pushContent();
 		};
 
 		updateContent();
@@ -107,6 +125,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// Panel kapandığında event listener'ı temizle
 		panel.onDidDispose(() => {
+			readySubscription.dispose();
 			changeDocumentSubscription.dispose();
 		}, null, context.subscriptions);
 	});

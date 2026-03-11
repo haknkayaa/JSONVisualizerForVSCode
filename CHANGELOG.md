@@ -36,14 +36,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Node context menu actions for hide, unhide, collapse, and expand flows
+- Nested escaped JSON parsing from string values
+- YAML export alongside PNG export
+- Fixture JSON files under `test/` for layout and parsing checks
+- Rendered example screenshots under `images/`
+
+### Changed
+- Editor title command shortened to `Preview JSON` and switched to a dedicated icon
+- Array, object, value, and parsed nodes now use clearer visual treatment
+- Container-only nodes now show path-based titles instead of appearing empty
+- README refreshed with accurate usage instructions and sample images
+
+### Fixed
+- Node layout no longer stacks unrelated nodes onto the same coordinates
+- Parsed JSON action now works reliably inside the React Flow webview
+- Parsed subtree rendering for GraphQL-style request bodies is more consistent
+- Webview mounting no longer calls `root.render()` on every VS Code update message
+- Webview now waits for a `ready` handshake before the first JSON payload is pushed
+- UI expand/hide/collapse state resets cleanly when the source JSON content changes
+
 ### Planned
-- Light theme support
-- Custom theme options
-- More export formats
-- Layout algorithms
-- Search functionality
-- Collapsible nodes
-- JSON schema support
-- Performance optimizations
+- Search and filtering for large payloads
+- Schema-aware views and validation hints
+- Alternative layout strategies for very large graphs
 
 [0.1.0]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v0.1.0
