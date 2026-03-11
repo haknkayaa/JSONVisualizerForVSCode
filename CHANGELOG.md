@@ -36,6 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-03-11
+
 ### Added
 - Node context menu actions for hide, unhide, collapse, and expand flows
 - Nested escaped JSON parsing from string values
@@ -62,4 +64,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Schema-aware views and validation hints
 - Alternative layout strategies for very large graphs
 
+[1.1.0]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v1.1.0
 [0.1.0]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v0.1.0

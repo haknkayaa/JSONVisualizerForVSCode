@@ -2,6 +2,9 @@ out
 dist
 node_modules
 .vscode-test/
+.tmp-render/
+.tmp-yaml-check/
 *.vsix
-.jsoncrack.com-main
 .vscode
+.DS_Store
+test/.vscode/
