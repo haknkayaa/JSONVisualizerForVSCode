@@ -1,93 +1,70 @@
-# JSON Visualizer for VS Code
+# JSON Visualizer
 
-Interactive graph view for JSON files inside VS Code. It turns nested payloads into a navigable node graph, lets you expand escaped JSON strings in place, and exports the result as PNG or YAML.
+Visualize JSON files as interactive node graphs directly inside VS Code.
 
-## Highlights
+JSON Visualizer helps you inspect nested payloads faster, expand escaped JSON strings in place, and export the result when you need to share or document a structure.
 
-- Graph-based JSON preview directly from the editor title bar
-- Right-click node actions: hide, unhide, collapse, expand
-- Nested JSON string parsing with on-demand expansion
-- Object, array, value, and parsed-node visual styling
-- Fit view, zoom, PNG export, and YAML export controls
-- Example fixtures under [`test/`](test) and rendered screenshots under [`images/`](images)
+## Features
+
+- Open a graph view for any `.json` file from the editor title bar
+- Explore nested objects and arrays with a zoomable, pannable layout
+- Parse escaped JSON strings without leaving the preview
+- Hide, unhide, collapse, and expand nodes from the node context menu
+- Export the current graph as `PNG`
+- Export the current structure as `YAML`
 
 ## Quick Start
 
-1. Open this project in VS Code and run `npm install`.
-2. Start the extension with `F5`.
-3. In the Extension Development Host, open any `.json` file.
-4. Click the editor title action `Preview JSON`.
+1. Install `JSON Visualizer` from the VS Code Marketplace.
+2. Open any `.json` file in VS Code.
+3. Click `Preview JSON` in the editor title bar.
+4. Explore the graph and use the controls to zoom, fit, or export.
 
-You can also run `Preview JSON` from the Command Palette.
+You can also open the preview from the Command Palette with `Preview JSON`.
 
-## What It Looks Like
+## Screenshots
 
-Basic object layout:
+Basic object visualization:
 
 ![Basic object graph](images/basic-object.png)
 
-Deep nested object layout:
+Deep nested data:
 
 ![Deep tree graph](images/deep-tree.png)
 
-Nested escaped JSON parsing:
+Escaped JSON parsed inside the preview:
 
 ![GraphQL request graph](images/graphql-request.png)
 
-## Controls
+## Typical Workflow
 
-- `Zoom In`, `Zoom Out`, `Fit View`
-- `Download as PNG`
-- `Download as YAML`
-- Right click any node for visibility and collapse controls
-- `Parse JSON value` on string fields that contain escaped JSON
+1. Open a JSON document.
+2. Launch `Preview JSON`.
+3. Move around the graph with pan and zoom controls.
+4. Right-click nodes to simplify the view.
+5. Expand string values that contain nested JSON.
+6. Export the final result as `PNG` or `YAML`.
 
-## Development
+## Requirements
 
-Install dependencies:
+- VS Code `1.96.0` or newer
 
-```bash
-npm install
-```
+## Commands
 
-Build once:
-
-```bash
-npm run compile
-```
-
-Watch mode:
-
-```bash
-npm run watch
-```
-
-Lint:
-
-```bash
-npm run lint
-```
-
-Extension test command:
-
-```bash
-npm test
-```
-
-## Sample Files
-
-Use these fixtures while testing the preview:
-
-- [`test/basic-object.json`](test/basic-object.json)
-- [`test/deep-tree.json`](test/deep-tree.json)
-- [`test/graphql-request.json`](test/graphql-request.json)
-- [`test/mixed-arrays.json`](test/mixed-arrays.json)
-- [`test/nested-encoded-json.json`](test/nested-encoded-json.json)
-- [`test/wide-layout.json`](test/wide-layout.json)
+- `Preview JSON`: Open the visual preview for the active JSON file
 
 ## Privacy
 
-The extension does not send JSON payloads anywhere. Preview rendering and exports stay local to the machine running VS Code.
+JSON Visualizer does not send your JSON anywhere. Rendering, parsing, and exports stay local in VS Code.
+
+## Support
+
+- Report an issue: [GitHub Issues](https://github.com/haknkayaa/JSONVisualizerForVSCode/issues)
+- Request a feature: [New feature request](https://github.com/haknkayaa/JSONVisualizerForVSCode/issues/new?title=Feature%3A+)
+
+## Development
+
+Development notes, local setup, and test commands live in [docs/development.md](docs/development.md).
 
 ## License
 

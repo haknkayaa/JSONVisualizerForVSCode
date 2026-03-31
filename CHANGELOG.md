@@ -36,6 +36,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-03-31
+
+### Changed
+- Refreshed the Marketplace icon
+- Reworked the Marketplace README and moved contributor setup into `docs/development.md`
+
 ## [1.1.1] - 2026-03-31
 
 ### Fixed
@@ -69,6 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Schema-aware views and validation hints
 - Alternative layout strategies for very large graphs
 
+[1.1.2]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v1.1.2
 [1.1.1]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v1.1.1
 [1.1.0]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v1.1.0
 [0.1.0]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v0.1.0
