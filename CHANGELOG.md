@@ -36,6 +36,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-03-31
+
+### Fixed
+- Reduced the published VSIX size by excluding bundled dependencies and workspace-only files from the extension package
+
 ## [1.1.0] - 2026-03-11
 
 ### Added
@@ -64,5 +69,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Schema-aware views and validation hints
 - Alternative layout strategies for very large graphs
 
+[1.1.1]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v1.1.1
 [1.1.0]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v1.1.0
 [0.1.0]: https://github.com/haknkayaa/JSONVisualizerForVSCode/releases/tag/v0.1.0

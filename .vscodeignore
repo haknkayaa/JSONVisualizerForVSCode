@@ -2,8 +2,12 @@
 .vscode-test/**
 test/**
 src/**
+node_modules/**
 .gitignore
+.cursorrules
 .yarnrc
+package-lock.json
+webpack.config.js
 **/tsconfig.json
 **/eslint.config.mjs
 **/*.map
